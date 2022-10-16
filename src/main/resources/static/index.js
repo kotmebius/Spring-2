@@ -8,7 +8,7 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     };
 
     $scope.fillCart = function () {
-        $http.get('http://localhost:8189/market/cart')
+        $http.get('http://localhost:8189/market/api/v1/cart')
             .then(function (response) {
                 $scope.cart = response.data;
                 // console.log(response);
@@ -23,7 +23,7 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     }
 
     $scope.addProductToCart = function (id) {
-        $http.get('http://localhost:8189/market/cart/' + id)
+        $http.get('http://localhost:8189/market/api/v1/cart/add/' + id)
             .then(function (response) {
                 $scope.fillCart();
             });
