@@ -1,2 +1,15 @@
-package ru.khantemirov.mymarket.repositories;public class UserRepository {
+package ru.khantemirov.mymarket.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import ru.khantemirov.mymarket.entities.User;
+
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByUsername(String username);
 }
+
+

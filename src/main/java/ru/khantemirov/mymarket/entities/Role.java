@@ -1,4 +1,4 @@
-package ru.khantemirov.model;
+package ru.khantemirov.mymarket.entities;
 
 
 import lombok.EqualsAndHashCode;
@@ -19,20 +19,10 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String roleName;
-
-    @OneToMany(mappedBy = "role", cascade = CascadeType.PERSIST)
-    private List<User> user;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(id, role.id);
-    }
+    @Column(name = "name")
+    private String name;
 
 }

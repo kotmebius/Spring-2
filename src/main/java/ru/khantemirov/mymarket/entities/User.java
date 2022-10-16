@@ -1,4 +1,4 @@
-package ru.khantemirov.model;
+package ru.khantemirov.mymarket.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -17,24 +18,23 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "username")
     private String username;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false, length = 1024)
+    @Column(name = "password")
     private String password;
 
-    @ManyToOne (cascade = CascadeType.PERSIST)
-    private Role role;
+    @Column(name = "email")
+    private String email;
 
-    @OneToOne (mappedBy = "user", cascade = CascadeType.ALL)
-    private Customer customer;
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
-    public User(String username) {
-        this.username = username;
-    }
+
 }
