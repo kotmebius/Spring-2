@@ -7,10 +7,25 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
             });
     };
 
+    $scope.fillCart = function () {
+        $http.get('http://localhost:8189/market/cart')
+            .then(function (response) {
+                $scope.cart = response.data;
+                // console.log(response);
+            });
+    };
+
     $scope.deleteProduct = function (id) {
         $http.delete('http://localhost:8189/market/api/v1/products/' + id)
             .then(function (response) {
                 $scope.fillTable();
+            });
+    }
+
+    $scope.addProductToCart = function (id) {
+        $http.get('http://localhost:8189/market/cart/' + id)
+            .then(function (response) {
+                $scope.fillCart();
             });
     }
 
@@ -24,4 +39,5 @@ angular.module('market', []).controller('indexController', function ($scope, $ht
     }
 
     $scope.fillTable();
+    $scope.fillCart();
 });
