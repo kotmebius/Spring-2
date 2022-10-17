@@ -13,4 +13,18 @@ public class CartItem {
     private int quantity;
     private int pricePerProduct;
     private int price;
+
+    public void incQuantity() {
+        quantity++;
+        recalculate();
+    }
+
+    public void decQuantity() {
+        quantity--;
+        recalculate();
+    }
+
+    public void recalculate() {
+        price = pricePerProduct*quantity;
+    }
 }

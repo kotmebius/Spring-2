@@ -25,4 +25,22 @@ public class CartController {
         cartService.addProduct(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable long id){
+        cartService.deleteById(id);
+    }
+
+    @PostMapping("/inc/{id}")
+    public void incCartItem(@PathVariable long id){
+        cartService.incCartItem(id);
+    }
+    @PostMapping("/dec/{id}")
+    public void decCartItem(@PathVariable long id){
+        cartService.decCartItem(id);
+    }
+    @PostMapping("/flush")
+    public void flushCart(){
+        cartService.flushCart();
+    }
+
 }

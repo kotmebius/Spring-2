@@ -34,4 +34,21 @@ public class CartService {
                 new ResourceNotFoundException("Не удаётся добавить продукт с id: "+id+"в корзину. Продукт не найден"));
         cart.add(product);
     }
+
+    public void deleteById(Long id){
+        cart.deleteItem(id);
+    }
+
+    public void incCartItem(Long id){
+        cart.incCartItem(id);
+    }
+
+    public void decCartItem(Long id){
+        cart.decCartItem(id);
+    }
+
+    public void flushCart(){
+        cart = new Cart();
+    }
+
 }
