@@ -2,8 +2,8 @@ package ru.khantemirov.mymarket.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.khantemirov.mymarket.dtos.Cart;
-import ru.khantemirov.mymarket.dtos.CartItem;
+import ru.khantemirov.mymarket.model.Cart;
+import ru.khantemirov.mymarket.model.CartItem;
 import ru.khantemirov.mymarket.entities.Product;
 import ru.khantemirov.mymarket.exceptions.ResourceNotFoundException;
 
@@ -47,8 +47,8 @@ public class CartService {
         cart.decCartItem(id);
     }
 
-    public void flushCart(){
-        cart = new Cart();
+    public void clearCart(){
+        cart.clear();
     }
 
 }
