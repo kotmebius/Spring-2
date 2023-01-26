@@ -1,4 +1,4 @@
-package ru.khantemirov.mymarket.dtos;
+package ru.khantemirov.mymarket.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,4 +13,13 @@ public class CartItem {
     private int quantity;
     private int pricePerProduct;
     private int price;
+
+    public void changeQuantity(int delta) {
+        quantity += delta;
+        recalculate();
+    }
+
+    public void recalculate() {
+        price = pricePerProduct*quantity;
+    }
 }
