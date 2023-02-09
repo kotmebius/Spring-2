@@ -7,13 +7,11 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import ru.khantemirov.mymarket.services.ProductService;
-import ru.khantemirov.mymarket.soap.products.GetAllProductsRequest;
-import ru.khantemirov.mymarket.soap.products.GetAllProductsResponse;
-import ru.khantemirov.mymarket.soap.products.GetProductByIdRequest;
-import ru.khantemirov.mymarket.soap.products.GetProductByIdResponse;
+import ru.khantemirov.mymarket.soap.products.*;
 
-@RequiredArgsConstructor
+
 @Endpoint
+@RequiredArgsConstructor
 public class ProductEndpoint {
 
     private static final String NAMESPACE_URI = "http://www.khantemirov.ru/mymarket/ws/products";
@@ -23,7 +21,7 @@ public class ProductEndpoint {
     @ResponsePayload
     public GetProductByIdResponse getProductByIdResponse(@RequestPayload GetProductByIdRequest request) {
         GetProductByIdResponse response = new GetProductByIdResponse();
-        response.setProduct(productService.getByIdXML(request.getId()));
+        response.setProductSOAP(productService.getByIdXML(request.getId()));
         return response;
     }
 
@@ -39,6 +37,18 @@ public class ProductEndpoint {
         </soapenv:Envelope>
      */
 
+
+
+//    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllProductsRequest")
+//    @ResponsePayload
+//    public JAXBElement<GetAllProductsResponse> getAllProducts(@RequestPayload JAXBElement<GetAllProductsRequest> request) {
+//        GetAllProductsResponse response = new GetAllProductsResponse();
+//        productService.getAllProductsXML().forEach(response.getProductsSOAP()::add);
+//        QName qname = new QName("GetAllProductsResponse");
+//        JAXBElement<GetAllProductsResponse> jaxbElement = new JAXBElement<>(qname,
+//                GetAllProductsResponse.class, response);
+//        return jaxbElement;
+//    }
 
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllProductsRequest")
