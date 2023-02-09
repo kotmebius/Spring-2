@@ -21,4 +21,4 @@ spring:
                 web-allow-others: false
 jwt:
   secret: fghd5re43tgdsa467yBFDgw4332ytjgfD4s32FSDGVF4t.
-  lifetime: 36000000
+  lifetime: 18000000

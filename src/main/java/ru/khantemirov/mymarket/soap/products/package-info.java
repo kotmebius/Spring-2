@@ -5,5 +5,5 @@
 // Generated on: 2023.01.26 at 09:01:52 PM YEKT 
 //
 
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.flamexander.com/mymarket/ws/products", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.khantemirov.ru/mymarket/ws/products", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package ru.khantemirov.mymarket.soap.products;

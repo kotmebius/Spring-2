@@ -24,13 +24,13 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
 
-    // http://localhost:8080/ws/products.wsdl
+    //
     @Bean(name = "products")
     public DefaultWsdl11Definition productsWsdl11Definition(XsdSchema productsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ProductsPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.flamexander.com/mymarket/ws/products");
+        wsdl11Definition.setTargetNamespace("http://www.khantemirov.ru/mymarket/ws/products");
         wsdl11Definition.setSchema(productsSchema);
         return wsdl11Definition;
     }
