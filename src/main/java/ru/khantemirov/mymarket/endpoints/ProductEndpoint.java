@@ -12,11 +12,11 @@ import ru.khantemirov.mymarket.soap.products.GetAllProductsResponse;
 import ru.khantemirov.mymarket.soap.products.GetProductByIdRequest;
 import ru.khantemirov.mymarket.soap.products.GetProductByIdResponse;
 
-@Endpoint
 @RequiredArgsConstructor
+@Endpoint
 public class ProductEndpoint {
 
-    private static final String NAMESPACE_URI = "http://www.flamexander.com/mymarket/ws/products";
+    private static final String NAMESPACE_URI = "http://www.khantemirov.ru/mymarket/ws/products";
     private final ProductService productService;
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductByIdRequest")
@@ -28,10 +28,10 @@ public class ProductEndpoint {
     }
 
     /*
-        Пример запроса: POST http://localhost:8189/ws
+        Пример запроса: POST http://localhost:8189/ws/market
         Header -> Content-Type: text/xml
 
-        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.flamexander.com/mymarket/ws/products">
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.khantemirov.ru/mymarket/ws/products">
             <soapenv:Header/>
             <soapenv:Body>
                 <f:GetAllProductsRequest/>
