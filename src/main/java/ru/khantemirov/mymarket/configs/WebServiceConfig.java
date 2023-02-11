@@ -24,7 +24,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
 
-    //
+    //http://localhost:8189/market/ws/products.wsdl
     @Bean(name = "products")
     public DefaultWsdl11Definition productsWsdl11Definition(XsdSchema productsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();

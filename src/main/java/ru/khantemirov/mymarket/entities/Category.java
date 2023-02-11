@@ -11,9 +11,9 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "products")
+@Table(name = "categories")
 @NoArgsConstructor
-public class Product {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,12 +22,9 @@ public class Product {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @Column(name = "price")
-    private int price;
+    @Column(name="category_id")
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
     @CreationTimestamp
     @Column(name="created_at")
