@@ -132,9 +132,9 @@
             <tr ng-repeat="item in cart.items">
                 <td>{{item.productTitle}}</td>
                 <td>
+                    <button type="button" class="btn btn-warning" ng-click="decCartItem(item.productId)">-</button>
                     {{item.quantity}}
                     <button type="button" class="btn btn-warning" ng-click="incCartItem(item.productId)">+</button>
-                    <button type="button" class="btn btn-warning" ng-click="decCartItem(item.productId)">-</button>
                 </td>
                 <td>{{item.pricePerProduct+' x '+item.quantity+ ' = '+item.price}}</td>
                 <td>
