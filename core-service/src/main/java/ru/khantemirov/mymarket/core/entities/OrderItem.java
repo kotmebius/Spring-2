@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "order_items")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,5 +45,12 @@ public class OrderItem {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    public OrderItem(Product product, Order order, int quantity, int pricePerProduct, int price) {
+        this.product = product;
+        this.order = order;
+        this.quantity = quantity;
+        this.pricePerProduct = pricePerProduct;
+        this.price = price;
+    }
 }
 

@@ -22,3 +22,7 @@ spring:
 jwt:
   secret: fghd5re43tgdsa467yBFDgw4332ytjgfD4s32FSDGVF4t.
   lifetime: 18000000
+
+integration:
+  coreService: http://localhost:8189/market-core/
+  cartService: http://localhost:8190/market-carts/
