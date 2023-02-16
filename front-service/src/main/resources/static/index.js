@@ -1,15 +1,18 @@
 angular.module('market', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
+        let coreService = "http://localhost:8189/market-core/";
+        let cartService = "http://localhost:8190/market-carts/";
+
         $scope.fillTable = function () {
-            $http.get('http://localhost:8189/market-core/api/v1/products')   //отправляем get-запрос
+            $http.get(coreService+'api/v1/products')   //отправляем get-запрос
                 .then(function (response) {                             //Потом, когда пришёл ответ
                     $scope.products = response.data;                    //Поле data - тело ответа на запрос, scope - обмен с html(аналог модели)
                     // console.log(response.data);
-                    //console.log(response.data[3].title);              //вывести название 4-го продукта
+                    // console.log(response.data[3].title);              //вывести название 4-го продукта
                 });
         };
 
         $scope.fillCart = function () {
-            $http.get('http://localhost:8190/market-cart/api/v1/cart')
+            $http.get(cartService+'api/v1/cart')
                 .then(function (response) {
                     $scope.cart = response.data;
                     // console.log(response);
@@ -17,7 +20,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
         };
 
         $scope.fillCategories = function () {
-            $http.get('http://localhost:8189/market-core/api/v1/categories')
+            $http.get(coreService+'api/v1/categories')
                 .then(function (response) {
                     $scope.categories = response.data;
                     //console.log(response);
@@ -26,7 +29,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
 
 
         $scope.fillOrders = function () {
-            $http.get('http://localhost:8189/market-core/api/v1/orders')
+            $http.get(coreService+'api/v1/orders')
                 .then(function (response) {
                     $scope.categories = response.data;
                     //console.log(response);
@@ -35,7 +38,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
 
 
         $scope.createNewProduct = function (id) {
-            $http.post('http://localhost:8189/market-core/api/v1/products/', $scope.newProduct)
+            $http.post(coreService+'api/v1/products/', $scope.newProduct)
                 .then(function (response) {
                     $scope.newProduct = null;
                     $scope.fillTable();
@@ -43,46 +46,46 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
         }
 
         $scope.deleteProduct = function (id) {
-            $http.delete('http://localhost:8189/market-core/api/v1/products/' + id)
+            $http.delete(coreService+'api/v1/products/' + id)
                 .then(function (response) {
                     $scope.fillTable();
                 });
         }
         $scope.deleteFromCart = function (id) {
-            $http.delete('http://localhost:8190/market-cart/api/v1/cart/' + id)
+            $http.delete(cartService+'api/v1/cart/' + id)
                 .then(function (response) {
                     $scope.fillCart();
                 });
         }
         $scope.addProductToCart = function (id) {
-            $http.get('http://localhost:8190/market-cart/api/v1/cart/add/' + id)
+            $http.get(cartService+'api/v1/cart/add/' + id)
                 .then(function (response) {
                     $scope.fillCart();
                 });
         }
 
         $scope.incCartItem = function (id) {
-            $http.post('http://localhost:8190/market-cart/api/v1/cart/inc/' + id)
+            $http.post(cartService+'api/v1/cart/inc/' + id)
                 .then(function (response) {
                     $scope.fillCart();
                 });
         }
 
         $scope.decCartItem = function (id) {
-            $http.post('http://localhost:8190/market-cart/api/v1/cart/dec/' + id)
+            $http.post(cartService+'api/v1/cart/dec/' + id)
                 .then(function (response) {
                     $scope.fillCart();
                 });
         }
         $scope.clearCart = function () {
-            $http.post('http://localhost:8190/market-cart/api/v1/cart/flush/')
+            $http.delete(cartService+'api/v1/cart/clear/')
                 .then(function (response) {
                     $scope.fillCart();
                 });
         }
 
         $scope.tryToAuth = function () {
-            $http.post('http://localhost:8189/market-core/auth', $scope.user)
+            $http.post(coreService+'auth', $scope.user)
                 .then(function successCallback(response) {
                     if (response.data.token) {
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
@@ -162,7 +165,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
         }
 
         $scope.confirmOrder = function () {
-            $http.post('http://localhost:8189/market-core/api/v1/orders/add', $scope.customer)
+            $http.post(coreService+'api/v1/orders/add', $scope.customer)
                 .then(function (response) {
                     ;
                 });

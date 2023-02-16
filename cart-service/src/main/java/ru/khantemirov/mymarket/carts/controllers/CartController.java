@@ -41,7 +41,7 @@ public class CartController {
         cartService.decCartItem(id);
     }
 
-    @PostMapping("/flush")
+    @DeleteMapping("/clear")
     public void clearCart() {
         cartService.clearCart();
     }
